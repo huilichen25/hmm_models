@@ -43,7 +43,7 @@ class hmm_algorithms():
 				# multiple beta at t + 1 with the emission prob at t  for each of the observation channel
 				for r in range(0,self.obs.shape[0]):
 					# r refers to observation channel (e.g., affect, task)
-					obs_value = self.obs[r,t,k]
+					obs_value = self.obs[r,t+1,k]
 					tmp_beta *= self.emission[:,obs_value,r]
 
 				# tmp_beta at this point is: emission_probs(x at t + 1) * beta at t+1
