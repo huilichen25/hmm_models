@@ -97,7 +97,7 @@ class build_hmm:
 
 		self.__decode_EM_emission_matrix(self.transformed_emission)
 
-	def get_posterior_probs(self,obs_):
+	def get_posterior_probs_old(self,obs_):
 		'''
 		obs_ should be a single sequence. 
 		the function gets posterior probs for a single sequence
@@ -129,7 +129,7 @@ class build_hmm:
 		print(posterior_probs)
 		print('.....................done.............................')
 
-	def get_posterior_probs_tmp(self,obs_):
+	def get_posterior_probs(self,obs_):
 		'''
 		obs_ should be a single sequence. 
 		the function gets posterior probs for a single sequence
@@ -141,23 +141,10 @@ class build_hmm:
 		emissionArray=self.transformed_emission
 		obsArray=self.__transform_obs(obs_)
 
-		print("obs array...")
-		print(obsArray)
-		print(obsArray.shape)
-		print('------------------')
-
-		print('emission .....')
-		print(emissionArray)
-		print('----------------')
 		
 		fb = hmm_algo(trans_probs,emissionArray,init_probs,obsArray)
-		alpha=fb.forward_algo()
-		print('========final alpha......')
-		print(alpha)
-		print('===================')
-		beta = fb.backward_algo()
-		print('====backward algo. beta...')
-		print(beta)
+		alpha=fb.ForwardBackward()
+		
 		
 	def __set_observations(self,obs_):
 		'''

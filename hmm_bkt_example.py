@@ -1,6 +1,33 @@
 from hmm_bkt_models_final import *
 import numpy as np
 
+def dummy_hmm_test():
+	'''
+	the dummy example comes from russel and norvig's book
+	'''
+	em_umbrella = np.array([[0.9,0.2],
+		[0.2,0.9]],order='F')
+
+	# observation node: umbrella
+	# 0 = 
+	umbrella_arr = np.array([[0],[0]])
+
+	obs ={ "umbrella":umbrella_arr}
+	emission_probs ={ "umbrella":em_umbrella }
+
+	trans = np.array([[0.7,0.3],[0.3,0.7]])
+
+	init_probs = np.array([0.5,0.5])
+
+	test =build_hmm(["umbrella"] )
+
+
+
+	test.set_model_parameters(obs,trans,init_probs, emission_probs )
+
+	test.get_posterior_probs(obs)
+
+
 def test_hmm():
 	'''
 	test the correctness of hmm model
@@ -92,7 +119,8 @@ def test_bkt():
 	test.commit_bkt_model()
 
 	# get the posterior probs without training the bkt model
-	test.get_posterior_probs_tmp({'task_node':np.array(single_task).transpose(),'affect':np.array(single_aff).transpose()})
+	test.get_posterior_probs({'task_node':np.array(single_task).transpose(),'affect':np.array(single_aff).transpose()})
 	
 
-test_bkt()
+#test_bkt()
+dummy_hmm_test()
